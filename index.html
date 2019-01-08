@@ -19,10 +19,7 @@
       };
       target.setCustomValidity('');
 
-      const res = await fetch(
-        `/api.php?q=${encodeURIComponent(value)}`,
-        {}
-      ).then(res => res.text());
+      const res = await fetch(`/api.php?q=${encodeURIComponent(value)}`).then(res => res.text());
       out.innerHTML = res;
       console.log(res, '¯\\_(ツ)_/¯');
     });
