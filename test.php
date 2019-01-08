@@ -9,3 +9,4 @@ echo "Running tests\n";
 
 var_dump($convert($str) === 'bac');
 var_dump($convert($str2) === 'bACD');
+var_dump($convert('000') === '0');
