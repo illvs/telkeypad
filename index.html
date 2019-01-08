@@ -1,20 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
+
+<h3>Telephone keypad</h3>
 
 <input id="in" type="text" />
-<button id="run">Convert</button>
 <p id="out"></p>
 
 <script>
-  const input = document.getElementById("in");
-  const out = document.getElementById("out");
-  const run = document.getElementById("run");
+  const out = document.getElementById('out');
 
-  run.addEventListener("click", async () => {
-    const res = await fetch(
-      `/api.php?q=${encodeURIComponent(input.value)}`,
-      {}
-    ).then(res => res.text());
-    out.innerHTML = res;
-    console.log(res, '¯\\_(ツ)_/¯');
-  });
+  document
+    .getElementById('in')
+    .addEventListener('keyup', async ({ target }) => {
+      const { value } = target;
+
+      if (value !== '' && !/^([0-9*#]+)$/.test(value)) {
+        target.setCustomValidity('invalid');
+        return;
+      };
+      target.setCustomValidity('');
+
+      const res = await fetch(
+        `/api.php?q=${encodeURIComponent(value)}`,
+        {}
+      ).then(res => res.text());
+      out.innerHTML = res;
+      console.log(res, '¯\\_(ツ)_/¯');
+    });
 </script>
