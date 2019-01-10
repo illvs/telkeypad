@@ -112,7 +112,7 @@
     .addEventListener('keyup', async ({ target }) => {
       const { value } = target;
 
-      if (value !== '' && !/^([0-9*#]+)$/.test(value)) {
+      if (value === '' || !/^([0-9*#]+)$/.test(value)) {
         target.setCustomValidity('invalid');
         return;
       }
